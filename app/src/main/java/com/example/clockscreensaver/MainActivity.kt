@@ -20,6 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.clockscreensaver.ui.theme.ClockScreenSaverTheme
 
 class MainActivity : ComponentActivity() {
+    private var tag: String? = "MainActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        让应用的内容扩展到屏幕边缘，充分利用屏幕空间
@@ -34,6 +36,13 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+        Log.v(tag, "onCreate end")
+        Log.d(tag, "onCreate end")
+        Log.i(tag, "onCreate end")
+        Log.w(tag, "onCreate end")
+        Log.e(tag, "onCreate end")
+
     }
 }
 
