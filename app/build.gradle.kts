@@ -67,7 +67,12 @@ dependencies {
     implementation(libs.androidx.ui) // Compose UI 核心, 提供了构建 Compose UI 的基本组件和功能。
     implementation(libs.androidx.ui.graphics) // Compose 图形支持, 用于在 Compose 中绘制自定义图形或应用样式
     implementation(libs.androidx.ui.tooling.preview) // Compose 预览工具支持, 用于在 Android Studio 中实时预览 Compose UI
-    implementation(libs.androidx.material3) // Material 3 设计库(Google 最新一代的设计语言), 用于构建符合 Material Design 3 标准的 UI 组件
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx) // Material 3 设计库(Google 最新一代的设计语言), 用于构建符合 Material Design 3 标准的 UI 组件
 
     // testImplementation 声明单元测试依赖
     testImplementation(libs.junit)

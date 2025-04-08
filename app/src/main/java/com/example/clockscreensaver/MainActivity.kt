@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.clockscreensaver.databinding.MainActivityBinding
 import com.example.clockscreensaver.ui.theme.ClockScreenSaverTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : BaseActivity() {
     private var tag: String? = "MainActivity"
     private lateinit var binding: MainActivityBinding
 
@@ -33,36 +33,35 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding  = MainActivityBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
+        setContentView(binding.root)
 
 //        让应用的内容扩展到屏幕边缘，充分利用屏幕空间
-        enableEdgeToEdge()
+//        enableEdgeToEdge()
 ////        设置 Compose 的 UI 内容（Compose 是传统 Android View 系统的替代品）
-        setContent {
-            ClockScreenSaverTheme {
-                // Scaffold：提供一种规范的应用布局结构，支持顶部栏、底部栏、浮动按钮等组件。在这里，它用于填充整个屏幕，并将 innerPadding 传递给内容
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    Greeting(getString(R.string.app_name), Modifier.padding(innerPadding))
-
-                    Button(
-                        onClick = {
-                            // 这里是点击事件的处理逻辑
-                            val intent = Intent("com.example.clockscreensaver.CUSTOM_BROADCAST")
-                            intent.setPackage(packageName)
-                            sendBroadcast(intent)
-                        }
-
-                    ) {
-                        Text(
-                            text = "发送广播",
-                            modifier = Modifier.padding(innerPadding)
-                        ) // 按钮文字
-
-                    }
-//                    Counter(Modifier.padding(innerPadding))
-                }
-            }
-        }
+//        setContent {
+//            ClockScreenSaverTheme {
+//                // Scaffold：提供一种规范的应用布局结构，支持顶部栏、底部栏、浮动按钮等组件。在这里，它用于填充整个屏幕，并将 innerPadding 传递给内容
+//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+////                    Greeting(getString(R.string.app_name), Modifier.padding(innerPadding))
+//
+//                    Button(
+//                        onClick = {
+//                            // 标准自定义广播
+////                            sendCustomBroadcastClick()
+//                            sendOrderBroadcastClick()
+//                        }
+//
+//                    ) {
+//                        Text(
+//                            text = "发送广播",
+//                            modifier = Modifier.padding(innerPadding)
+//                        ) // 按钮文字
+//
+//                    }
+////                    Counter(Modifier.padding(innerPadding))
+//                }
+//            }
+//        }
 
         Log.v(tag, "onCreate end")
         Log.d(tag, "onCreate end")
@@ -75,17 +74,41 @@ class MainActivity : ComponentActivity() {
 
 
        // 触发自定义广播
-//        binding.sendBroadcastButton.setOnClickListener {
-////            val intent = Intent("com.example.clockscreensaver.CUSTOM_BROADCAST")
-////            intent.setPackage(packageName)
-////            sendBroadcast(intent)
-////        }
+        binding.sendBroadcastButton.setOnClickListener {
+            // 标准自定义广播
+//           sendCustomBroadcastClick()
+            sendOrderBroadcastClick()
+        }
+
+        binding.forceClose.setOnClickListener {
+            val intent = Intent("com.example.clockscreensaver.FORCE_OFFLINE")
+//            intent.setPackage(packageName)
+            Toast.makeText(this, "forceClose", Toast.LENGTH_SHORT).show()
+
+            sendBroadcast(intent)
+        }
+    }
+
+    private fun sendCustomBroadcastClick() {
+        // [自定义广播] 发送广播
+        val intent = Intent("com.example.clockscreensaver.CUSTOM_BROADCAST")
+        // 自定义广播默认是隐式广播。因此这里一定要调用setPackage()方法。让自定义广播变为显性广播
+        intent.setPackage(packageName)
+        sendBroadcast(intent)
+    }
+
+    private fun sendOrderBroadcastClick() {
+        // [有序广播] 发送广播
+        val intent = Intent("com.example.clockscreensaver.CUSTOM_BROADCAST")
+        // 自定义广播默认是隐式广播。因此这里一定要调用setPackage()方法。让自定义广播变为显性广播
+        intent.setPackage(packageName)
+        sendOrderedBroadcast(intent, null)
     }
 
     private fun leanBroadcast() {
         val intentFilter = IntentFilter()
         // 监听系统时间改变广播
-        // 想要监听什么广播，就在这里添加相应的action， 在android 8.0+ 这个广播被禁止了
+        // 想要监听什么广播，就在这里添加相应的action
         intentFilter.addAction("android.intent.action.TIME_TICK")
         timeChangeReceiver = TimeChangeReceiver()
         registerReceiver(timeChangeReceiver, intentFilter)

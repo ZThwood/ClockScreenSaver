@@ -1,7 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?android:attr/buttonBarStyle"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Send Broadcast" android:id="@+id/send_broadcast_button"></Button>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Broadcast"
+        android:id="@+id/send_broadcast_button" />
+
+    <Button
+        android:id="@+id/force_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ff5f5f"
+        android:gravity="center"
+        android:layout_marginHorizontal="22dp"
+        android:text="下线" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="代办事项"/>
+
+        <EditText
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/todoInput"
+            android:background="@color/teal_200"
+
+            >
+        </EditText>
+        <Button
+            android:id="@+id/addTodo"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textFontWeight="@integer/material_motion_duration_short_1"
+            android:layout_marginVertical="20dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#ff5f5f"
+            android:text="提交" />
+    </LinearLayout>
 
 </LinearLayout>
