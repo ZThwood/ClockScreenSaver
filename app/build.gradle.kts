@@ -55,9 +55,26 @@ android {
 
 // 指定当前项目所有的依赖关系， 据需求选择合适的依赖配置，可以优化构建性能和 APK 大小
 dependencies {
+
+    // Retrofit 核心库
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.gson) // 引入 Gson
     // implementation 声明主项目依赖
     implementation(libs.androidx.core.ktx)  // AndroidX Core KTX 扩展
-    implementation(libs.androidx.lifecycle.runtime.ktx) // Lifecycle KTX 扩展,管理 UI 组件的生命周期，避免内存泄漏
+
+
+
+    val lifecycleVersion = "2.6.1"
+    // 引入Transformations所需的依赖
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+
+    // 其他可能需要的相关依赖
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+
+
+
 
     /* 当你引入 Compose BOM 后，所有 Compose 相关库（如 androidx.compose.ui、androidx.compose.material3 等）的版本会自动从 BOM 中获取。
     你不再需要为每个 Compose 库单独指定版本号，避免版本不一致或冲突 */
@@ -85,4 +102,5 @@ dependencies {
     // debugImplementation 声明调试模式依赖
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 }

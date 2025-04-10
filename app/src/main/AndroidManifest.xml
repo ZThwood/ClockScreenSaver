@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <!-- [静态广播] 必须声明权限！！ -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
     <application
+        android:name="com.clockscreensaver.android.ClockScreenSaverApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,56 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClockScreenSaver"
         tools:targetApi="31">
-
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ClockScreenSaver">
-            <intent-filter>
-
-                <!-- 表示MainActivity是这个项目的主Activity，在手机上点击应用图标，首先启动的就是这个Activity。 -->
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> <!-- [有序广播] -->
-        <receiver
-            android:name=".OrderedBroadcast"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.example.clockscreensaver.CUSTOM_BROADCAST" />
-            </intent-filter>
-        </receiver> <!-- [自定义广播] -->
-        <receiver
-            android:name=".CustomReceiver"
-            android:enabled="true"
-            android:exported="true">
-
-            <!-- 优先级100，说明比 OrderedBroadcast 先出现 -->
-            <intent-filter android:priority="100">
-                <action android:name="com.example.clockscreensaver.CUSTOM_BROADCAST" />
-            </intent-filter>
-        </receiver> <!-- [静态广播]  静态广播监听注册 -->
-        <!-- [静态广播] Exported属性表示是否允许这个BroadcastReceiver接收本程序以外的广播，Enabled属性表示是否启用这个BroadcastReceive -->
-        <receiver
-            android:name=".DeviceRebootReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-
-                <!-- [静态广播]   Android系统启动完成后会发出一条值为android.intent.action.BOOT_COMPLETED的广播 -->
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver> <!-- 这段代码表示对MainActivity进行注册，没有在AndroidManifest.xml里注册的Activity是不能使用的 -->
-        <!-- android:label指定Activity中标题栏的内容 -->
-        <!-- android:exported 定义了该组件是否能被外部应用（其他App或系统）访问 -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:theme="@style/Theme.ClockScreenSaver">
-
-        </activity>
     </application>
 
 </manifest>

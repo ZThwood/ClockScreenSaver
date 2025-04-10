@@ -23,6 +23,12 @@
         android:gravity="center"
         android:layout_marginHorizontal="22dp"
         android:text="下线" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send notice"
+            android:id="@+id/sendNotice" />
     </LinearLayout>
 
 
@@ -55,5 +61,7 @@
             android:background="#ff5f5f"
             android:text="提交" />
     </LinearLayout>
+
+
 
 </LinearLayout>
