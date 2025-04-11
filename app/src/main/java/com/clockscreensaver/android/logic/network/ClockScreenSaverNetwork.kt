@@ -1,5 +1,6 @@
 package com.clockscreensaver.android.logic.network
 
+import android.util.Log
 import com.clockscreensaver.android.logic.model.PlaceResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,6 +19,7 @@ object ClockScreenSaverNetwork {
             enqueue(object : Callback<T> {
                 override fun onResponse(call: Call<T>, response: Response<T>) {
                     val body = response.body()
+                    Log.d("thwood", "onResponse body: " +body)
                     if (body != null) {
                         continuation.resume(body)
                     } else {

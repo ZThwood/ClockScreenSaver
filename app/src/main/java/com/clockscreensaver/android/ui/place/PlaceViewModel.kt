@@ -1,5 +1,6 @@
 package com.clockscreensaver.android.ui.place
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +15,8 @@ class PlaceViewModel: ViewModel() {
     val placeList = ArrayList<Place>()
     val placeLiveData: LiveData<Result<List<Place>>> =
         searchLiveData.switchMap { query ->
+            Log.i("searchPlaceEdit", "searchLiveData.switchMap  " + query)
+
             Repository.searchPlaces(query)
         }
 

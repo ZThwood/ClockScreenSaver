@@ -11,7 +11,7 @@ class ClockScreenSaverApplication: Application() {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
         const val WEATHER_TOKEN = "3npBQKVLj1Ia63ej"
-
+        const val A_MAP_TOKEN = "e0ebe953599c22bb7abaa746c17d0a69"
     }
 
     override fun onCreate() {
