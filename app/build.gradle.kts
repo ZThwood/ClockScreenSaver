@@ -61,17 +61,17 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.gson) // 引入 Gson
     // implementation 声明主项目依赖
-    implementation(libs.androidx.core.ktx)  // AndroidX Core KTX 扩展
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.activity)  // AndroidX Core KTX 扩展
 
+    implementation(libs.androidx.activity)  // AndroidX Core KTX 扩展
 
-
-    val lifecycleVersion = "2.6.1"
     // 引入Transformations所需的依赖
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation(libs.lifecycle.livedata.ktx)
 
     // 其他可能需要的相关依赖
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
 
 
 
